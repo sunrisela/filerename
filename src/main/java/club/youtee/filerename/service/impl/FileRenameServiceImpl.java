@@ -14,7 +14,8 @@ public class FileRenameServiceImpl implements FileRenameService {
 
     @Override
     public void preview(String path, RenameOptionDTO optionDTO, ListView<String> preview) {
-        preview.getItems().addAll(path, optionDTO.toString());
+        preview.getItems().addAll("文件目录: " + path, optionDTO.toString());
+        
     }
 
 }
