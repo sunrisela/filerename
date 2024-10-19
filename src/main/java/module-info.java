@@ -1,3 +1,8 @@
+/**
+ * JavaFX is built and distributed as a set of named modules, each in its own modular jar file, and the JavaFX runtime
+ * expects its classes to be loaded from a set of named javafx.* modules, and does not support loading those modules
+ * from the classpath.
+ */
 module club.youtee.filerename {
     requires javafx.controls;
     requires javafx.fxml;
@@ -11,6 +16,7 @@ module club.youtee.filerename {
     requires spring.context;
     requires spring.core;
     requires static lombok;
+    requires org.apache.commons.io;
 
     opens club.youtee.filerename to javafx.fxml, spring.context, spring.beans, spring.core;
     opens club.youtee.filerename.config to spring.context, spring.beans, spring.core;

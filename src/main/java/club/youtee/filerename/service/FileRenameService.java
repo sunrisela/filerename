@@ -10,4 +10,6 @@ import javafx.scene.control.ListView;
 public interface FileRenameService {
 
     void preview(String path, RenameOptionDTO optionDTO, ListView<String> preview);
+
+    void execute(String path, RenameOptionDTO optionDTO, ListView<String> preview);
 }

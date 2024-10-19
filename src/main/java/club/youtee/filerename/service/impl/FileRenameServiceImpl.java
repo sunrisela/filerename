@@ -14,8 +14,14 @@ public class FileRenameServiceImpl implements FileRenameService {
 
     @Override
     public void preview(String path, RenameOptionDTO optionDTO, ListView<String> preview) {
-        preview.getItems().addAll("文件目录: " + path, optionDTO.toString());
-        
+        SeriesRenameProcessor processor = new SeriesRenameProcessor(optionDTO, preview, true);
+        processor.run(path);
+    }
+
+    @Override
+    public void execute(String path, RenameOptionDTO optionDTO, ListView<String> preview) {
+        SeriesRenameProcessor processor = new SeriesRenameProcessor(optionDTO, preview, false);
+        processor.run(path);
     }
 
 }

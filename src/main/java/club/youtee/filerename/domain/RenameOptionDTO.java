@@ -1,5 +1,7 @@
 package club.youtee.filerename.domain;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +37,11 @@ public class RenameOptionDTO {
     private String suffix;
 
     /**
+     * 补充的字幕文件名后缀
+     */
+    private String subSuffix;
+
+    /**
      * 是否保留原始文件名
      */
     private boolean reserveOriginalFilename;
@@ -47,12 +54,12 @@ public class RenameOptionDTO {
     /**
      * 允许的视频文件格式
      */
-    private String videoExtnames;
+    private Set<String> videoExtnames;
 
     /**
      * 允许的字幕文件格式
      */
-    private String subExtnames;
+    private Set<String> subExtnames;
 
     /**
      * 视频文件名集数匹配正则
@@ -64,5 +71,14 @@ public class RenameOptionDTO {
      */
     private String subEpReg;
 
+    /**
+     * 第几季，若为空表示集数命名上不包含季
+     */
+    private Integer season;
+
+    /**
+     * 重新排序开始集数，若为空表示不重新排序
+     */
+    private Integer resortEp;
 
 }

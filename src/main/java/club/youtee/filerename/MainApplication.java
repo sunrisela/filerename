@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootApplication
-public class HelloApplication extends Application {
+public class MainApplication extends Application {
 
     private ConfigurableApplicationContext context;
 
@@ -34,12 +33,12 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         fxmlLoader.setControllerFactory(context::getBean);
-        Scene scene = new Scene(fxmlLoader.load(), 640, 720);
+        Scene scene = new Scene(fxmlLoader.load(), 960, 640);
         //scene.getStylesheets().addAll(BootstrapFX.bootstrapFXStylesheet());
 
-        stage.setTitle("视频与字幕文件名批处理");
+        stage.setTitle("视频与字幕文件名批处理v1.0 Beta");
         stage.setScene(scene);
         stage.show();
     }
