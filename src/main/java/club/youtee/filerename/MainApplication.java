@@ -18,8 +18,8 @@ public class MainApplication extends Application {
 
     @Override
     public void init() {
-        List<String> rawParams = getParameters().getRaw() ;
-        String[] args = rawParams.toArray(new String[0]) ;
+        List<String> rawParams = getParameters().getRaw();
+        String[] args = rawParams.toArray(new String[0]);
         context = SpringApplication.run(getClass(), args);
         // further configuration on context as needed
     }
