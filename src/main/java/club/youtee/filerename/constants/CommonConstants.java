@@ -36,4 +36,24 @@ public interface CommonConstants {
      * 标准时间格式，精确到秒：HH:mm:ss
      */
     DateTimeFormatter NORM_TIME_FORMATTER = DateTimeFormatter.ofPattern(NORM_TIME_PATTERN);
+
+    /**
+     * 保留原文件名
+     */
+    int RESERVE_ORIGINAL = 0;
+
+    /**
+     * 保留原文件名前段
+     */
+    int RESERVE_FRONT_SEG = 1;
+
+    /**
+     * 保留原文件名末段
+     */
+    int RESERVE_END_SEG = 2;
+
+    /**
+     * 不保留原文件名
+     */
+    int RESERVE_NONE = 3;
 }

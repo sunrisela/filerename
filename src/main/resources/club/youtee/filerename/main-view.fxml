@@ -39,15 +39,15 @@
             </FlowPane>
             <Label text="文件名前缀:" GridPane.rowIndex="2" />
             <FlowPane hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <TextField fx:id="prefix" prefHeight="26.0" prefWidth="320.0" promptText="重命名的文件名前缀" />
+                <TextField fx:id="prefix" prefHeight="26.0" prefWidth="320.0" promptText="添加文件名前缀" />
             </FlowPane>
             <Label text="文件名后缀:" GridPane.rowIndex="3" />
             <FlowPane hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <TextField fx:id="suffix" prefHeight="26.0" prefWidth="320.0" promptText="重命名的文件名后缀" />
+                <TextField fx:id="suffix" prefHeight="26.0" prefWidth="320.0" promptText="添加文件名后缀" />
             </FlowPane>
             <Label text="字幕文件名后缀:" GridPane.rowIndex="4" />
             <FlowPane hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                <TextField fx:id="subSuffix" prefHeight="26.0" prefWidth="320.0" promptText="重命名的字幕文件名后缀" />
+                <TextField fx:id="subSuffix" prefHeight="26.0" prefWidth="320.0" promptText="添加字幕文件名后缀" />
             </FlowPane>
             <Label text="匹配要求:" GridPane.rowIndex="5" />
             <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -76,19 +76,21 @@
             </FlowPane>
             <Label text="视频集数正则:" GridPane.rowIndex="8" />
             <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                <TextField fx:id="videoEpReg" prefHeight="26.0" prefWidth="320.0" promptText="附加的视频文件名集数匹配正则表达式" />
+                <TextField fx:id="videoEpReg" prefHeight="26.0" prefWidth="320.0" promptText="自定义视频文件名集数匹配正则表达式" />
             </FlowPane>
             <Label text="字幕集数正则:" GridPane.rowIndex="9" />
             <Pane GridPane.columnIndex="1" GridPane.rowIndex="9">
-                <TextField fx:id="subEpReg" prefHeight="26.0" prefWidth="320.0" promptText="附加的字幕文件名集数匹配正则表达式" />
+                <TextField fx:id="subEpReg" prefHeight="26.0" prefWidth="320.0" promptText="自定义字幕文件名集数匹配正则表达式" />
             </Pane>
-            <Label text="保留原文件名:" GridPane.rowIndex="10" />
+            <Label text="保留方式:" GridPane.rowIndex="10" />
             <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="10">
-                <RadioButton selected="true" text="是" userData="true">
+                <RadioButton selected="true" text="原文件名" userData="0">
                     <toggleGroup>
-                        <ToggleGroup fx:id="reserveOriginalFilename" />
+                        <ToggleGroup fx:id="reserveType" />
                     </toggleGroup></RadioButton>
-                <RadioButton text="否" toggleGroup="$reserveOriginalFilename" userData="false" />
+                <RadioButton text="保留前段" toggleGroup="$reserveType" userData="1" />
+                <RadioButton text="保留后段" toggleGroup="$reserveType" userData="2" />
+                <RadioButton text="不保留" toggleGroup="$reserveType" userData="3" />
             </FlowPane>
             <Label text="第几季:" GridPane.rowIndex="11" />
             <Pane GridPane.columnIndex="1" GridPane.rowIndex="11">
@@ -129,7 +131,7 @@
         <!--<fx:define>
             <ToggleGroup fx:id="refer" />
             <ToggleGroup fx:id="allowMissing" />
-            <ToggleGroup fx:id="reserveOriginalFilename" />
+            <ToggleGroup fx:id="reserveType" />
         </fx:define>-->
     </VBox>
     <VBox>

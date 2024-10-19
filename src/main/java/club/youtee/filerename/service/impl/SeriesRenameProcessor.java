@@ -175,7 +175,7 @@ public class SeriesRenameProcessor extends BasePreviewProcessor {
         StringBuilder sb = new StringBuilder();
         // prefix
         if (option.getPrefix() != null) {
-            if (option.isReserveOriginalFilename()) {
+            if (option.isReserveOriginalName() || option.isReserveFrontSegment()) {
                 if (!source.getBasename().startsWith(option.getPrefix())) {
                     sb.append(option.getPrefix());
                 }
@@ -183,7 +183,7 @@ public class SeriesRenameProcessor extends BasePreviewProcessor {
                 sb.append(option.getPrefix());
             }
         }
-        if (option.isReserveOriginalFilename()) {
+        if (option.isReserveOriginalName() || option.isReserveFrontSegment()) {
             sb.append(source.getBeforeEpisodeFragment());
         }
 
@@ -195,7 +195,7 @@ public class SeriesRenameProcessor extends BasePreviewProcessor {
         // TODO 高位补0位数控制
         sb.append(String.format("%02d", currentEp));
 
-        if (option.isReserveOriginalFilename()) {
+        if (option.isReserveOriginalName() || option.isReserveEndSegment()) {
             sb.append(source.getAfterEpisodeFragment());
         }
         // suffix
@@ -206,7 +206,7 @@ public class SeriesRenameProcessor extends BasePreviewProcessor {
             suffix = option.getSuffix();
         }
         if (suffix != null) {
-            if (option.isReserveOriginalFilename()) {
+            if (option.isReserveOriginalName() || option.isReserveEndSegment()) {
                 if (!source.getBasename().endsWith(suffix)) {
                     sb.append(suffix);
                 }

@@ -9,6 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import static club.youtee.filerename.constants.CommonConstants.RESERVE_END_SEG;
+import static club.youtee.filerename.constants.CommonConstants.RESERVE_FRONT_SEG;
+import static club.youtee.filerename.constants.CommonConstants.RESERVE_NONE;
+import static club.youtee.filerename.constants.CommonConstants.RESERVE_ORIGINAL;
+
 /**
  * @author Xinglong.Li
  * @date 2024-10-17
@@ -44,7 +49,7 @@ public class RenameOptionDTO {
     /**
      * 是否保留原始文件名
      */
-    private boolean reserveOriginalFilename;
+    private int reserveType;
 
     /**
      * 允许视频与字幕匹配时，出现不存在情况
@@ -80,5 +85,21 @@ public class RenameOptionDTO {
      * 重新排序开始集数，若为空表示不重新排序
      */
     private Integer resortEp;
+
+    public boolean isReserveOriginalName() {
+        return reserveType == RESERVE_ORIGINAL;
+    }
+
+    public boolean isReserveFrontSegment() {
+        return reserveType == RESERVE_FRONT_SEG;
+    }
+
+    public boolean isReserveEndSegment() {
+        return reserveType == RESERVE_END_SEG;
+    }
+
+    public boolean isReserveNone() {
+        return reserveType == RESERVE_NONE;
+    }
 
 }

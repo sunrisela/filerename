@@ -33,7 +33,7 @@ public class MainController {
     private TextField subSuffix;
 
     @FXML
-    private ToggleGroup reserveOriginalFilename;
+    private ToggleGroup reserveType;
 
     @FXML
     private ToggleGroup allowMissing;
@@ -120,7 +120,7 @@ public class MainController {
             .prefix(prefix.getText().isBlank() ? null : prefix.getText().trim())
             .suffix(suffix.getText().isBlank() ? null : suffix.getText().trim())
             .subSuffix(subSuffix.getText().isBlank() ? null : subSuffix.getText().trim())
-            .reserveOriginalFilename(Boolean.parseBoolean(reserveOriginalFilename.getSelectedToggle().getUserData().toString()))
+            .reserveType(Integer.parseInt(reserveType.getSelectedToggle().getUserData().toString()))
             .allowMissing(Boolean.parseBoolean(allowMissing.getSelectedToggle().getUserData().toString()))
             .videoEpReg(videoEpReg.getText().isBlank() ? null : videoEpReg.getText().trim())
             .subEpReg(subEpReg.getText().isBlank() ? null : subEpReg.getText().trim())

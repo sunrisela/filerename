@@ -2,6 +2,7 @@
 *.class
 target/
 .mvn/
+dependency-reduced-pom.xml
 
 # Log file
 logs
