@@ -42,6 +42,7 @@ public abstract class BasePreviewProcessor {
 
     private void log(String level, String msg) {
         preview.getItems().add(String.format(LOG_PATTERN, LocalDateTime.now().format(NORM_TIME_FORMATTER), level, msg));
+        preview.scrollTo(preview.getItems().size() - 1);
     }
 
 }
