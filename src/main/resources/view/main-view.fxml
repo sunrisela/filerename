@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.bootstrapfx.*?>
-<?import java.net.URL?>
 
-<HBox prefHeight="640" prefWidth="960" styleClass="panel"
-      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="club.youtee.filerename.controller.MainController">
+<HBox prefHeight="640" prefWidth="960" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
     <stylesheets>
         <BootstrapFX fx:factory="bootstrapFXStylesheet" />
         <URL value="@../css/common.css" />
@@ -16,7 +14,7 @@
     <padding>
         <Insets left="20.0" right="20.0" top="30.0" />
     </padding>
-    <VBox alignment="TOP_CENTER" minWidth="560" prefWidth="480" spacing="20.0">
+    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="480" spacing="20.0">
         <padding>
             <Insets right="20.0" />
         </padding>
@@ -29,8 +27,8 @@
                 <Label style="-fx-text-fill: #d9534f" text="*" />
                 <Label text="文件:" />
             </FlowPane>
-            <FlowPane alignment="CENTER_LEFT" hgap="10" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
-                <TextField fx:id="filePathField" prefHeight="26.0" prefWidth="320.0" />
+            <FlowPane alignment="CENTER_LEFT" hgap="6" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                <TextField fx:id="filePathField" prefHeight="26.0" prefWidth="273.0" />
                 <Button onAction="#onSelectFileButtonClick" text="选择目录.." />
             </FlowPane>
             <Label text="主体:" GridPane.rowIndex="1" />
@@ -128,7 +126,7 @@
             <Button onAction="#onPreviewButtonClick" styleClass="btn,btn-default" text="预览" />
             <Button onAction="#onCleanupButtonClick" styleClass="btn,btn-default" text="清除 >>" />
          <VBox.margin>
-            <Insets right="18.0" />
+            <Insets />
          </VBox.margin>
         </FlowPane>
 
@@ -141,7 +139,7 @@
     <VBox>
         <Label text="输出结果:" />
         <Pane>
-            <ListView fx:id="previewView" editable="true" prefHeight="560.0" prefWidth="358.0" />
+            <ListView fx:id="previewView" editable="true" prefHeight="560.0" prefWidth="418.0" />
         </Pane>
     </VBox>
 </HBox>
