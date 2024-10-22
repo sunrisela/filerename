@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.bootstrapfx.*?>
 
-<HBox prefHeight="640" prefWidth="960" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
+<HBox prefHeight="640" prefWidth="960" stylesheets="@../css/common.css" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
     <stylesheets>
         <BootstrapFX fx:factory="bootstrapFXStylesheet" />
-        <URL value="@../css/common.css" />
     </stylesheets>
     <padding>
         <Insets left="20.0" right="20.0" top="30.0" />

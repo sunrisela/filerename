@@ -46,32 +46,6 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- for Mac ARM Cross-Platform -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>mac-aarch64</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>mac-aarch64</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>mac-aarch64</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>mac-aarch64</classifier>
-        </dependency>
-
         <!-- for Windows Cross-Platform -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -98,6 +72,32 @@
             <classifier>win</classifier>
         </dependency>
 
+        <!-- for Mac ARM Cross-Platform -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
@@ -115,10 +115,10 @@
             <version>${commons-io.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -154,13 +154,13 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
+                        &lt;!&ndash; Default configuration for running with: mvn clean javafx:run &ndash;&gt;
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>club.youtee.filerename/club.youtee.filerename.MainApplication</mainClass>
@@ -173,34 +173,33 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
+            <!-- javaFX fat jar build tools -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.5.3</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>club.youtee.filerename.BootLauncher</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>club.youtee.filerename.BootLauncher</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.gluonhq</groupId>
-                <artifactId>gluonfx-maven-plugin</artifactId>
-                <version>1.0.24</version>
-                <configuration>
-                    <mainClass>club.youtee.filerename.BootLauncher</mainClass>
-                </configuration>
+            <!--<plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+                <version>0.10.3</version>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -214,6 +213,34 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>-->
+            <plugin>
+                <groupId>com.gluonhq</groupId>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>1.0.23</version>
+                <configuration>
+                    <mainClass>club.youtee.filerename.MainApplication</mainClass>
+                    <javafxStaticSdkVersion>${javafx.version}</javafxStaticSdkVersion>
+                    <!-- 涉及反射的类 -->
+                    <reflectionList>
+                        <list>club.youtee.filerename.controller.MainController</list>
+                        <list>org.kordamp.bootstrapfx.BootstrapFX</list>
+                        <list>javafx.scene.layout.VBox</list>
+                        <list>javafx.scene.layout.GridPane</list>
+                        <list>javafx.scene.layout.FlowPane</list>
+                        <list>javafx.scene.control.RadioButton</list>
+                        <list>javafx.scene.control.CheckBox</list>
+                        <list>javafx.scene.control.ListView</list>
+                    </reflectionList>
+                    <!-- 允许的静态资源 -->
+                    <resourcesList>
+                        <list>.*\\.properties$</list>
+                        <list>.*\\.yml$</list>
+                    </resourcesList>
+                    <runtimeArgs>
+                        <arg>-Dfile.encoding=UTF-8</arg>
+                    </runtimeArgs>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

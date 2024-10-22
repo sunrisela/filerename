@@ -7,14 +7,15 @@ import java.util.stream.Collectors;
 
 import club.youtee.filerename.domain.RenameOptionDTO;
 import club.youtee.filerename.service.FileRenameService;
+import club.youtee.filerename.service.impl.FileRenameServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.DirectoryChooser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MainController {
 
     @FXML
@@ -63,11 +64,12 @@ public class MainController {
 
     private List<CheckBox> subExtnames;
 
-    @Autowired
+    //@Autowired
     private FileRenameService fileRenameService;
 
     @FXML
     public void initialize() {
+        fileRenameService = new FileRenameServiceImpl();
         videoExtnames = videoExtnamesCont.lookupAll("CheckBox").stream()
             .map( o -> (CheckBox)o)
             .collect(Collectors.toList());

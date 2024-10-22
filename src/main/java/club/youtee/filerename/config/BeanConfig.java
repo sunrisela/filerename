@@ -1,12 +1,12 @@
 package club.youtee.filerename.config;
 
-import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Xinglong.Li
  * @date 2024-10-17
  */
-@Configuration
+//@Configuration
 public class BeanConfig {
 
 }
