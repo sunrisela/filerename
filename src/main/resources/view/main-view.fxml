@@ -10,25 +10,25 @@
         <BootstrapFX fx:factory="bootstrapFXStylesheet" />
     </stylesheets>
     <padding>
-        <Insets left="20.0" right="20.0" top="30.0" />
+        <Insets left="20.0" right="20.0" top="30.0" bottom="30" />
     </padding>
-    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="480" spacing="20.0">
+    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="500" maxWidth="Infinity" HBox.hgrow="ALWAYS" spacing="20.0">
         <padding>
             <Insets right="20.0" />
         </padding>
-        <GridPane hgap="16" vgap="18">
+        <GridPane hgap="16" vgap="18" maxWidth="Infinity" VBox.vgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" maxWidth="200.0" minWidth="100.0" prefWidth="100.0" />
-                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" halignment="RIGHT" maxWidth="200.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <FlowPane alignment="CENTER_RIGHT">
                 <Label style="-fx-text-fill: #d9534f" text="*" />
                 <Label text="文件:" />
             </FlowPane>
-            <FlowPane alignment="CENTER_LEFT" hgap="6" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
-                <TextField fx:id="filePathField" prefHeight="26.0" prefWidth="273.0" />
-                <Button onAction="#onSelectFileButtonClick" text="选择目录.." />
-            </FlowPane>
+            <AnchorPane GridPane.columnIndex="1">
+                <TextField fx:id="filePathField" prefHeight="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" />
+                <Button onAction="#onSelectFileButtonClick" text="选择目录.." AnchorPane.rightAnchor="0.0" />
+            </AnchorPane>
             <Label text="主体:" GridPane.rowIndex="1" />
             <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <RadioButton selected="true" text="视频文件名" userData="video">
@@ -38,17 +38,11 @@
                 <RadioButton text="字幕文件名" toggleGroup="$refer" userData="sub" />
             </FlowPane>
             <Label text="文件名前缀:" GridPane.rowIndex="2" />
-            <FlowPane hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <TextField fx:id="prefix" prefHeight="26.0" prefWidth="320.0" promptText="添加文件名前缀" />
-            </FlowPane>
+            <TextField fx:id="prefix" GridPane.columnIndex="1" GridPane.rowIndex="2"  prefHeight="26.0" prefWidth="320.0" promptText="添加文件名前缀" />
             <Label text="文件名后缀:" GridPane.rowIndex="3" />
-            <FlowPane hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <TextField fx:id="suffix" prefHeight="26.0" prefWidth="320.0" promptText="添加文件名后缀" />
-            </FlowPane>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="suffix" prefHeight="26.0" prefWidth="320.0" promptText="添加文件名后缀" />
             <Label text="字幕文件名后缀:" GridPane.rowIndex="4" />
-            <FlowPane hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                <TextField fx:id="subSuffix" prefHeight="26.0" prefWidth="320.0" promptText="添加字幕文件名后缀" />
-            </FlowPane>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="subSuffix" prefHeight="26.0" prefWidth="320.0" promptText="添加字幕文件名后缀" />
             <Label text="匹配要求:" GridPane.rowIndex="5" />
             <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="5">
                 <RadioButton selected="true" text="匹配视频或字幕文件之一" userData="true">
@@ -75,13 +69,9 @@
                 <CheckBox selected="true" text="vtt" />
             </FlowPane>
             <Label text="视频集数正则:" GridPane.rowIndex="8" />
-            <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                <TextField fx:id="videoEpReg" prefHeight="26.0" prefWidth="320.0" promptText="自定义视频文件名集数匹配正则表达式" />
-            </FlowPane>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" fx:id="videoEpReg" prefHeight="26.0" prefWidth="320.0" promptText="自定义视频文件名集数匹配正则表达式" />
             <Label text="字幕集数正则:" GridPane.rowIndex="9" />
-            <Pane GridPane.columnIndex="1" GridPane.rowIndex="9">
-                <TextField fx:id="subEpReg" prefHeight="26.0" prefWidth="320.0" promptText="自定义字幕文件名集数匹配正则表达式" />
-            </Pane>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" fx:id="subEpReg" prefHeight="26.0" prefWidth="320.0" promptText="自定义字幕文件名集数匹配正则表达式" />
             <Label text="保留方式:" GridPane.rowIndex="10" />
             <FlowPane alignment="CENTER_LEFT" hgap="20" GridPane.columnIndex="1" GridPane.rowIndex="10">
                 <RadioButton selected="true" text="原文件名" userData="0">
@@ -134,10 +124,8 @@
             <ToggleGroup fx:id="reserveType" />
         </fx:define>-->
     </VBox>
-    <VBox>
+    <VBox maxWidth="Infinity" HBox.hgrow="ALWAYS">
         <Label text="输出结果:" />
-        <Pane>
-            <ListView fx:id="previewView" editable="true" prefHeight="560.0" prefWidth="418.0" />
-        </Pane>
+        <ListView fx:id="previewView" editable="true" prefHeight="560.0" prefWidth="418.0" maxWidth="Infinity" VBox.vgrow="ALWAYS" />
     </VBox>
 </HBox>
