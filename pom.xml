@@ -183,7 +183,7 @@
                 <version>1.0.23</version>
                 <configuration>
                     <mainClass>club.youtee.filerename.MainApplication</mainClass>
-                    <javafxStaticSdkVersion>${javafx.version}</javafxStaticSdkVersion>
+                    <!--<javafxStaticSdkVersion>${javafx.version}</javafxStaticSdkVersion>-->
                     <!-- 涉及反射的类 -->
                     <reflectionList>
                         <list>club.youtee.filerename.controller.MainController</list>
