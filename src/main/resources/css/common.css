@@ -1,6 +1,13 @@
 .root {
 }
 
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+    -fx-background-color: transparent;
+}
+
 .btn-default:focused, .btn-default.focused {
     -fx-background-color: #fff;
     -fx-border-color: #ccc;

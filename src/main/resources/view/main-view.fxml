@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.bootstrapfx.*?>
 
-<HBox prefHeight="640" prefWidth="960" stylesheets="@../css/common.css" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
+<SplitPane dividerPositions="0.35" prefHeight="640" prefWidth="960" stylesheets="@../css/common.css" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
     <stylesheets>
         <BootstrapFX fx:factory="bootstrapFXStylesheet" />
     </stylesheets>
     <padding>
         <Insets left="20.0" right="20.0" top="30.0" bottom="30" />
     </padding>
-    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="500" maxWidth="Infinity" HBox.hgrow="ALWAYS" spacing="20.0">
+    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="500">
         <padding>
             <Insets right="20.0" />
         </padding>
-        <GridPane hgap="16" vgap="18" maxWidth="Infinity" VBox.vgrow="ALWAYS">
+        <GridPane hgap="16" vgap="18" VBox.vgrow="SOMETIMES">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" halignment="RIGHT" maxWidth="200.0" minWidth="100.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" />
@@ -113,9 +113,6 @@
             <Button onAction="#onExecuteButtonClick" styleClass="btn,btn-primary" text="执行" />
             <Button onAction="#onPreviewButtonClick" styleClass="btn,btn-default" text="预览" />
             <Button onAction="#onCleanupButtonClick" styleClass="btn,btn-default" text="清除 >>" />
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
         </FlowPane>
 
         <!--<fx:define>
@@ -124,8 +121,8 @@
             <ToggleGroup fx:id="reserveType" />
         </fx:define>-->
     </VBox>
-    <VBox maxWidth="Infinity" HBox.hgrow="ALWAYS">
+    <VBox>
         <Label text="输出结果:" />
         <ListView fx:id="previewView" editable="true" prefHeight="560.0" prefWidth="418.0" maxWidth="Infinity" VBox.vgrow="ALWAYS" />
     </VBox>
-</HBox>
+</SplitPane>
