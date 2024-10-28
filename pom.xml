@@ -191,6 +191,7 @@
                         <list>javafx.scene.layout.VBox</list>
                         <list>javafx.scene.layout.GridPane</list>
                         <list>javafx.scene.layout.FlowPane</list>
+                        <list>javafx.scene.control.SplitPane</list>
                         <list>javafx.scene.control.RadioButton</list>
                         <list>javafx.scene.control.CheckBox</list>
                         <list>javafx.scene.control.ListView</list>
