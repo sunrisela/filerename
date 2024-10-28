@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.bootstrapfx.*?>
 
-<SplitPane dividerPositions="0.35" prefHeight="640" prefWidth="960" stylesheets="@../css/common.css" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
+<SplitPane prefHeight="640" prefWidth="960" stylesheets="@../css/common.css" styleClass="panel" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.MainController">
     <stylesheets>
         <BootstrapFX fx:factory="bootstrapFXStylesheet" />
     </stylesheets>
