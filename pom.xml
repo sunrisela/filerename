@@ -32,7 +32,7 @@
         </dependency>
 
         <!-- for Windows Cross-Platform -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>${javafx.version}</version>
@@ -55,10 +55,10 @@
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
             <classifier>win</classifier>
-        </dependency>
+        </dependency>-->
 
         <!-- for Mac ARM Cross-Platform -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>${javafx.version}</version>
@@ -81,7 +81,7 @@
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
             <classifier>mac-aarch64</classifier>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.controlsfx</groupId>
