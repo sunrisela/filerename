@@ -133,6 +133,10 @@
                             <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>--add-exports</arg>
+                        <arg>javafx.base/com.sun.javafx=club.youtee.filerename</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <!--<plugin>
@@ -198,6 +202,8 @@
                     </reflectionList>
                     <runtimeArgs>
                         <arg>-Dfile.encoding=UTF-8</arg>
+                        <arg>--add-exports</arg>
+                        <arg>javafx.base/com.sun.javafx=club.youtee.filerename</arg>
                     </runtimeArgs>
                 </configuration>
             </plugin>
