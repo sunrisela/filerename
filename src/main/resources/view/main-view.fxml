@@ -12,7 +12,7 @@
     <padding>
         <Insets left="20.0" right="20.0" top="30.0" bottom="30" />
     </padding>
-    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="500">
+    <VBox alignment="TOP_CENTER" minWidth="500" prefWidth="500" SplitPane.resizableWithParent="false">
         <padding>
             <Insets right="20.0" />
         </padding>
@@ -121,7 +121,7 @@
             <ToggleGroup fx:id="reserveType" />
         </fx:define>-->
     </VBox>
-    <VBox>
+    <VBox minWidth="100">
         <Label text="输出结果:" />
         <ListView fx:id="previewView" editable="true" prefHeight="560.0" prefWidth="418.0" maxWidth="Infinity" VBox.vgrow="ALWAYS" />
     </VBox>
