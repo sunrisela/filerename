@@ -124,8 +124,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -202,8 +200,6 @@
                     </reflectionList>
                     <runtimeArgs>
                         <arg>-Dfile.encoding=UTF-8</arg>
-                        <arg>--add-exports</arg>
-                        <arg>javafx.base/com.sun.javafx=club.youtee.filerename</arg>
                     </runtimeArgs>
                 </configuration>
             </plugin>
