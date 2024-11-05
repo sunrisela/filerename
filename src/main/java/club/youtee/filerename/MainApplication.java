@@ -20,8 +20,8 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        MainController controller = fxmlLoader.getController();
-        controller.onPreferenceMenuItemClick();
+        //MainController controller = fxmlLoader.getController();
+        //controller.onPreferenceMenuItemClick();
     }
 
     public static void main(String[] args) {
