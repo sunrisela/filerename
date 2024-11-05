@@ -8,6 +8,56 @@
     -fx-background-color: transparent;
 }
 
+.mini-btn {
+    -fx-pref-height: 20px;
+    -fx-pref-width: 20px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-cursor: default;
+}
+.mini-btn:hover {
+    -fx-background-color: #e6e6e6;
+}
+.mini-btn:pressed:hover, .mini-btn:pressed:focused, .mini-btn:pressed.focused, .mini-btn.pressed:hover {
+    -fx-background-color: #d4d4d4;
+}
+.mini-btn-plus {
+    -fx-background-image: url(../img/plus-50.png);
+    -fx-background-size: 20px 20px;
+}
+.mini-btn-dash {
+    -fx-background-image: url(../img/dash-50.png);
+    -fx-background-size: 20px 20px;
+}
+
+/* 去边框 */
+.list-view:focused {
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 1;
+}
+
+.text-field-list-cell {
+    -fx-pref-height: 25px;
+    -fx-pref-width: 25px;
+    -fx-min-width: 25px;
+    -fx-min-height: 25px;
+    -fx-padding: 0;
+}
+.text-field-list-cell .text-field {
+    -fx-pref-height: 25px;
+    -fx-pref-width: 25px;
+    -fx-min-width: 25px;
+    -fx-min-height: 25px;
+    -fx-background-radius: 0;
+    -fx-padding: 0 4;
+    /*-fx-background-color: #fff;*/
+    -fx-font-size: 14px;
+    -fx-background-insets: 0, 1;
+}
+
 .btn-default:focused, .btn-default.focused {
     -fx-background-color: #fff;
     -fx-border-color: #ccc;

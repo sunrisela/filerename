@@ -17,14 +17,19 @@ module club.youtee.filerename {
     //requires spring.core;
     requires static lombok;
     requires org.apache.commons.io;
+    requires org.yaml.snakeyaml;
 
     opens club.youtee.filerename to javafx.fxml;
     opens club.youtee.filerename.controller to javafx.fxml;
+    opens javafx.scene.control.ext.cell to javafx.fxml;
     //opens club.youtee.filerename to javafx.fxml, spring.context, spring.beans, spring.core;
     //opens club.youtee.filerename.config to spring.context, spring.beans, spring.core;
     //opens club.youtee.filerename.controller to javafx.fxml, spring.context, spring.beans, spring.core;
+
     exports club.youtee.filerename;
     exports club.youtee.filerename.controller;
     exports club.youtee.filerename.domain;
+    exports club.youtee.filerename.domain.entity;
+
     //exports club.youtee.filerename.service.impl to spring.beans;
 }

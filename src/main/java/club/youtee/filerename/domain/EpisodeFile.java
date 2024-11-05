@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import club.youtee.filerename.support.PreferenceContext;
 import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 
-import static club.youtee.filerename.constants.CommonConstants.DEFAULT_EP_PATTERNS;
 import static club.youtee.filerename.constants.CommonConstants.SUB_FILE_TYPE;
 import static club.youtee.filerename.constants.CommonConstants.VIDEO_FILE_TYPE;
 
@@ -65,21 +65,24 @@ public class EpisodeFile {
 
     private boolean parseEpisode(String customReg) {
         Matcher m = null;
-        for (Pattern p : DEFAULT_EP_PATTERNS) {
+        boolean matches = false;
+        for (Pattern p : PreferenceContext.getEpPatterns()) {
             m = p.matcher(this.basename);
             if (m.matches()) {
+                matches = true;
                 break;
             }
         }
-        if (!m.matches() && customReg != null) {
+        if (!matches && customReg != null) {
             m = Pattern.compile(customReg).matcher(this.basename);
+            matches = m.matches();
         }
-        if (m.matches()) {
+        if (matches) {
             episode = Integer.parseInt(m.group(2));
             beforeEpisodeFragment = m.group(1);
             afterEpisodeFragment = m.group(3);
         }
-        return m.matches();
+        return matches;
     }
 
     public boolean rename(String newBasename) {

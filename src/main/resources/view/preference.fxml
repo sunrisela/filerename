@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ext.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.bootstrapfx.*?>
+
+<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/common.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="club.youtee.filerename.controller.PreferenceController">
+    <stylesheets>
+        <BootstrapFX fx:factory="bootstrapFXStylesheet" />
+    </stylesheets>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <GridPane hgap="16" vgap="18" VBox.vgrow="SOMETIMES">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <Label text="集数正则表达式:" />
+        <VBox GridPane.columnIndex="1">
+            <FlowPane alignment="CENTER_LEFT" hgap="6" style="-fx-border-color: -fx-box-border; -fx-border-width: 1 1 0 1">
+                <Button fx:id="addEpReg" onAction="#onAddEpRegButtonClick" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="mini-btn, mini-btn-plus" />
+                <Button fx:id="delEpReg" onAction="#onDelEpRegButtonClick" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="mini-btn, mini-btn-dash" />
+            <padding>
+               <Insets bottom="2" left="2" right="2" top="2" />
+            </padding>
+            </FlowPane>
+            <ListView fx:id="epRegs" editable="true" prefHeight="200.0">
+                <cellFactory>
+                    <EditListCell fx:factory="forListView" />
+                </cellFactory>
+            </ListView>
+        </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+    <FlowPane alignment="CENTER_RIGHT" hgap="10.0" style="-fx-border-color: -fx-box-border; -fx-border-width: 1 0 0 0" styleClass="panel-primary">
+        <padding>
+            <Insets top="16.0" />
+        </padding>
+        <Button onAction="#onResetButtonClick" styleClass="btn,btn-default" text="重置" />
+        <Button onAction="#onCancelButtonClick" styleClass="btn,btn-default" text="取消" />
+        <Button onAction="#onSaveButtonClick" styleClass="btn,btn-primary" text="保存" />
+    </FlowPane>
+</VBox>

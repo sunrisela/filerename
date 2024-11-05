@@ -1,6 +1,7 @@
 package club.youtee.filerename.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,8 +9,12 @@ import java.util.stream.Collectors;
 import club.youtee.filerename.domain.RenameOptionDTO;
 import club.youtee.filerename.service.FileRenameService;
 import club.youtee.filerename.service.impl.FileRenameServiceImpl;
+import club.youtee.filerename.support.PreferenceContext;
 import com.sun.javafx.PlatformUtil;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -17,14 +22,18 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import static javafx.scene.input.KeyCode.C;
+import static javafx.scene.input.KeyCode.COMMA;
 
 public class MainController {
 
     @FXML
-    private SplitPane rootPane;
+    private VBox root;
 
     @FXML
     private TextField filePathField;
@@ -75,9 +84,14 @@ public class MainController {
     //@Autowired
     private FileRenameService fileRenameService;
 
+    private Stage preferenceStage;
+
+    private PreferenceController preferenceController;
+
     @FXML
     public void initialize() {
         fileRenameService = new FileRenameServiceImpl();
+
         videoExtnames = videoExtnamesCont.lookupAll("CheckBox").stream()
             .map( o -> (CheckBox)o)
             .collect(Collectors.toList());
@@ -109,6 +123,7 @@ public class MainController {
 
     @FXML
     protected void onPreviewButtonClick() {
+        System.out.println(PreferenceContext.getEpPatterns());
         fileRenameService.preview(filePathField.getText(), this.buildRenameOption(), previewView);
     }
 
@@ -117,9 +132,32 @@ public class MainController {
         previewView.getItems().clear();
     }
 
+    @FXML
+    public void onPreferenceMenuItemClick() {
+        if (preferenceStage == null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/preference.fxml"));
+            Parent parent;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            preferenceController = loader.getController();
+            Scene scene = new Scene(parent);
+            preferenceStage = new Stage();
+            preferenceStage.setTitle("设置");
+            preferenceStage.setScene(scene);
+            preferenceStage.initOwner(root.getScene().getWindow());
+            preferenceStage.initModality(Modality.APPLICATION_MODAL);
+        } else {
+            preferenceController.reload();
+        }
+        preferenceStage.show();
+    }
+
     private void addKeyListeners() {
         previewView.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == C && (event.isMetaDown() || (event.isControlDown() && (PlatformUtil.isWindows() || PlatformUtil.isLinux())))) {
+            if (event.getCode() == C && this.isMetaDown(event)) {
                 // copy selected item to clipboard
                 String selectedItem = previewView.getSelectionModel().getSelectedItem();
                 //System.out.println("selected item: " + selectedItem);
@@ -131,9 +169,9 @@ public class MainController {
                 }
             }
         });
-        rootPane.setOnDragOver(event -> {
+        root.setOnDragOver(event -> {
             Dragboard db = event.getDragboard();
-            if (event.getGestureSource() != rootPane) {
+            if (event.getGestureSource() != root) {
                 if (db.hasFiles() && db.getFiles().get(0).isDirectory()) {
                     // allow for both copying and moving, whatever user chooses
                     event.acceptTransferModes(TransferMode.COPY);
@@ -141,7 +179,7 @@ public class MainController {
             }
             event.consume();
         });
-        rootPane.setOnDragDropped(event -> {
+        root.setOnDragDropped(event -> {
             Dragboard db = event.getDragboard();
             boolean success = false;
             if (db.hasFiles() && db.getFiles().get(0).isDirectory()) {
@@ -152,6 +190,15 @@ public class MainController {
             event.setDropCompleted(success);
             event.consume();
         });
+        root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == COMMA && this.isMetaDown(event)) {
+                this.onPreferenceMenuItemClick();
+            }
+        });
+    }
+
+    private boolean isMetaDown(KeyEvent event) {
+        return event.isMetaDown() || (event.isControlDown() && (PlatformUtil.isWindows() || PlatformUtil.isLinux()));
     }
 
     private RenameOptionDTO buildRenameOption() {
