@@ -22,11 +22,8 @@ public class PreferenceController {
     @FXML
     public void initialize() {
         this.reload();
-        epRegs.setOnEditCancel(event -> {
-            System.out.println("fire event edit cancel ...");
-        });
         epRegs.setOnEditCommit(event -> {
-            System.out.println("fire event edit commit, index: " + event.getIndex());
+            //System.out.println("fire event edit commit, index: " + event.getIndex());
             if (event.getIndex() != -1) {
                 //String oldValue = event.getSource().getItems().get(event.getIndex());
                 event.getSource().getItems().set(event.getIndex(), event.getNewValue());
@@ -58,9 +55,12 @@ public class PreferenceController {
 
     @FXML
     protected void onSaveButtonClick() {
-        // TODO only changed to save
-        PreferenceContext.setEpPatterns(epRegs.getItems().stream().map(Pattern::compile).toList());
-        PreferenceContext.commit();
+        boolean changed = PreferenceContext.getEpRegs().hashCode() != epRegs.getItems().hashCode();
+        if (changed) {
+            System.out.println("ep patterns changed to commit.");
+            PreferenceContext.setEpPatterns(epRegs.getItems());
+            PreferenceContext.commit();
+        }
         epRegs.getScene().getWindow().hide();
     }
 

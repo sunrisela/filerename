@@ -136,17 +136,14 @@ class CellUtils {
         });
         // HACKS: support commit edit when focus out
         textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            System.out.println("fire event: focused=" + cell.isFocused() + ", editing=" + cell.isEditing());
             if (!newValue) {
                 // focus out
-                System.out.println("Commiting " + textField.getText());
                 if (converter == null) {
                     throw new IllegalStateException(
                         "Attempting to convert text input into Object, but provided "
                         + "StringConverter is null. Be sure to set a StringConverter "
                         + "in your cell factory.");
                 }
-                System.out.println("textfield fire event: focus out");
                 cell.commitEdit(converter.fromString(textField.getText()));
             }
         });

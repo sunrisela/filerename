@@ -71,6 +71,7 @@ public class PreferenceFile {
         options.setIndicatorIndent(2);
         Representer representer = new Representer(options);
         representer.addClassTag(PreferenceDO.class, Tag.MAP);
+        representer.getPropertyUtils().setSkipMissingProperties(true);
 
         return new Yaml(new Constructor(PreferenceDO.class, loaderOptions), representer, options);
     }

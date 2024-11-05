@@ -20,8 +20,10 @@ public class PreferenceContext {
 
     private List<Pattern> epPatterns;
 
+    private List<String> epRegs;
+
     static {
-        getInstance().load();
+        INSTANCE.load();
     }
 
     public static PreferenceContext getInstance() {
@@ -29,22 +31,28 @@ public class PreferenceContext {
     }
 
     public static List<Pattern> getEpPatterns() {
-        return getInstance().epPatterns;
+        return INSTANCE.epPatterns;
     }
 
-    public static void setEpPatterns(List<Pattern> epPatterns) {
-        getInstance().epPatterns = epPatterns;
+    public static List<String> getEpRegs() {
+        return INSTANCE.epRegs;
+    }
+
+    public static void setEpPatterns(List<String> epRegs) {
+        INSTANCE.epRegs = epRegs;
+        INSTANCE.epPatterns = epRegs.stream().map(Pattern::compile).toList();
     }
 
     public static void reset() {
-        getInstance().epPatterns = Arrays.asList(CommonConstants.DEFAULT_EP_PATTERNS);
+        INSTANCE.epPatterns = Arrays.asList(CommonConstants.DEFAULT_EP_PATTERNS);
+        INSTANCE.epRegs = INSTANCE.epPatterns.stream().map(Pattern::pattern).toList();
     }
 
     /**
      * 持久化配置
      */
     public static void commit() {
-        PREFERENCE_FILE.write(getInstance().convert2Entity());
+        PREFERENCE_FILE.write(INSTANCE.convert2Entity());
     }
 
     private void load() {
@@ -58,15 +66,15 @@ public class PreferenceContext {
 
     private void loadPreferenceFile() {
         PreferenceDO preferenceDO = PREFERENCE_FILE.readObject();
-        if (preferenceDO == null) {
+        if (preferenceDO == null || preferenceDO.getEpRegs() == null) {
             return;
         }
-        epPatterns = preferenceDO.getEpPatterns().stream().map(Pattern::compile).toList();
+        setEpPatterns(preferenceDO.getEpRegs());
     }
 
     private PreferenceDO convert2Entity() {
         PreferenceDO preferenceDO = new PreferenceDO();
-        preferenceDO.setEpPatterns(epPatterns.stream().map(Pattern::pattern).toList());
+        preferenceDO.setEpRegs(epRegs);
         return preferenceDO;
     }
 }

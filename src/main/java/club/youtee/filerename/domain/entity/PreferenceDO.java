@@ -21,5 +21,5 @@ public class PreferenceDO implements Serializable {
     @Serial
     private static final long serialVersionUID = -2595223517087560737L;
 
-    private List<String> epPatterns;
+    private List<String> epRegs;
 }

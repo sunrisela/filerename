@@ -123,7 +123,7 @@ public class MainController {
 
     @FXML
     protected void onPreviewButtonClick() {
-        System.out.println(PreferenceContext.getEpPatterns());
+        //System.out.println(PreferenceContext.getEpPatterns());
         fileRenameService.preview(filePathField.getText(), this.buildRenameOption(), previewView);
     }
 
