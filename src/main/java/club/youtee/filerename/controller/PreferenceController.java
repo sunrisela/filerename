@@ -57,7 +57,7 @@ public class PreferenceController {
     protected void onSaveButtonClick() {
         boolean changed = PreferenceContext.getEpRegs().hashCode() != epRegs.getItems().hashCode();
         if (changed) {
-            System.out.println("ep patterns changed to commit.");
+            //System.out.println("ep patterns changed to commit.");
             PreferenceContext.setEpPatterns(epRegs.getItems());
             PreferenceContext.commit();
         }
@@ -71,8 +71,7 @@ public class PreferenceController {
 
     @FXML
     protected void onResetButtonClick() {
-        List<String> regs = Arrays.stream(DEFAULT_EP_PATTERNS).map(Pattern::pattern)
-            .toList();
+        List<String> regs = Arrays.stream(DEFAULT_EP_PATTERNS).map(Pattern::pattern).toList();
         epRegs.getItems().clear();
         epRegs.getItems().addAll(regs);
     }

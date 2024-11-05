@@ -16,7 +16,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 960, 670);
         //scene.getStylesheets().addAll(BootstrapFX.bootstrapFXStylesheet());
 
-        stage.setTitle("视频与字幕文件名批处理v1.0 Beta");
+        stage.setTitle("视频与字幕文件名批处理v1.1 Beta");
         stage.setScene(scene);
         stage.show();
 
