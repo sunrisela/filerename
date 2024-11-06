@@ -1,6 +1,7 @@
 package club.youtee.filerename.manager;
 
 import info.movito.themoviedbapi.model.core.TvSeriesResultsPage;
+import info.movito.themoviedbapi.model.tv.series.TvSeriesDb;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,5 +16,11 @@ public class TmdbManagerTest {
     public void searchTv() {
         TvSeriesResultsPage resultsPage = tmdbManager.searchTv("柳舟记", 2024);
         System.out.println(resultsPage);
+    }
+
+    @Test
+    public void getTvSeriesInfo() {
+        TvSeriesDb tvSeriesInfo = tmdbManager.getTvSeriesInfo(237882);
+        System.out.println(tvSeriesInfo);
     }
 }

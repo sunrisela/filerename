@@ -3,6 +3,7 @@ package club.youtee.filerename.manager;
 import club.youtee.filerename.config.AppConfig;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.model.core.TvSeriesResultsPage;
+import info.movito.themoviedbapi.model.tv.series.TvSeriesDb;
 import info.movito.themoviedbapi.tools.TmdbException;
 
 /**
@@ -19,7 +20,15 @@ public class TmdbManager {
 
     public TvSeriesResultsPage searchTv(String keyword, Integer year) {
         try {
-            return tmdbApi.getSearch().searchTv(keyword, null, false, "zh-CN", 1, year);
+            return tmdbApi.getSearch().searchTv(keyword, year, false, "zh-CN", 1, null);
+        } catch (TmdbException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public TvSeriesDb getTvSeriesInfo(int seriesId) {
+        try {
+            return tmdbApi.getTvSeries().getDetails(seriesId, "zh-CN");
         } catch (TmdbException e) {
             throw new RuntimeException(e);
         }
