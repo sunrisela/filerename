@@ -18,6 +18,7 @@
         <commons-io.version>2.11.0</commons-io.version>
         <guava.version>31.1-jre</guava.version>
         <snakeyaml.version>2.2</snakeyaml.version>
+        <themoviedbapi.version>2.2.0</themoviedbapi.version>
     </properties>
 
     <dependencies>
@@ -104,6 +105,12 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>${snakeyaml.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>uk.co.conoregan</groupId>
+            <artifactId>themoviedbapi</artifactId>
+            <version>${themoviedbapi.version}</version>
         </dependency>
 
         <dependency>

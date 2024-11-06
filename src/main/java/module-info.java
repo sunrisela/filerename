@@ -18,6 +18,7 @@ module club.youtee.filerename {
     requires static lombok;
     requires org.apache.commons.io;
     requires org.yaml.snakeyaml;
+    requires info.movito.themoviedbapi;
 
     opens club.youtee.filerename to javafx.fxml;
     opens club.youtee.filerename.controller to javafx.fxml;
@@ -27,6 +28,7 @@ module club.youtee.filerename {
     //opens club.youtee.filerename.controller to javafx.fxml, spring.context, spring.beans, spring.core;
 
     exports club.youtee.filerename;
+    exports club.youtee.filerename.config;
     exports club.youtee.filerename.controller;
     exports club.youtee.filerename.domain;
     exports club.youtee.filerename.domain.entity;
