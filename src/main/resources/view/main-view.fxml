@@ -9,7 +9,7 @@
     <stylesheets>
         <BootstrapFX fx:factory="bootstrapFXStylesheet" />
     </stylesheets>
-    <MenuBar useSystemMenuBar="true">
+    <MenuBar useSystemMenuBar="true" style="-fx-border-color: #e9e9e9; -fx-border-width: 0 0 1 0; -fx-background-color: #fff">
         <menus>
             <Menu mnemonicParsing="false" text="选项">
                 <items>

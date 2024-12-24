@@ -180,7 +180,8 @@
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>club.youtee.filerename.BootLauncher</mainClass>
                         </transformer>
                     </transformers>
@@ -200,10 +201,10 @@
                 <version>1.0.23</version>
                 <configuration>
                     <mainClass>club.youtee.filerename.MainApplication</mainClass>
-                    <!--<javafxStaticSdkVersion>${javafx.version}</javafxStaticSdkVersion>-->
                     <!-- 涉及反射的类 -->
                     <reflectionList>
                         <list>club.youtee.filerename.controller.MainController</list>
+                        <list>club.youtee.filerename.controller.PreferenceController</list>
                         <list>org.kordamp.bootstrapfx.BootstrapFX</list>
                         <list>javafx.scene.layout.VBox</list>
                         <list>javafx.scene.layout.GridPane</list>
@@ -212,6 +213,10 @@
                         <list>javafx.scene.control.RadioButton</list>
                         <list>javafx.scene.control.CheckBox</list>
                         <list>javafx.scene.control.ListView</list>
+                        <list>javafx.scene.control.MenuBar</list>
+                        <list>javafx.scene.control.Menu</list>
+                        <list>javafx.scene.control.MenuItem</list>
+                        <list>javafx.scene.control.ext.cell.EditListCell</list>
                     </reflectionList>
                     <runtimeArgs>
                         <arg>-Dfile.encoding=UTF-8</arg>

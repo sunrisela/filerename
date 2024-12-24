@@ -21,12 +21,12 @@ public abstract class AbstractBeanFactory implements BeanFactory {
     /**
      * 已经创建Bean实例的集合
      */
-    private final Map<Class<?>, Object> instances;
+    private final Map<String, Object> instances;
 
     /**
      * 通过获取其他对象注入创建Bean集合（通过获取已创建的bean的某个属性注入到需要创建的Bean中）
      */
-    private final Map<Class<?>, Supplier<Object>> instancesLazyFromGetter;
+    private final Map<String, Supplier<Object>> instancesLazyFromGetter;
 
     public AbstractBeanFactory() {
         instances = new ConcurrentHashMap<>();
@@ -43,38 +43,20 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         return null;
     }
 
-    @Override
-    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
-        return null;
-    }
-
-    @Override
-    public Object getBean(String name, Object... args) throws BeansException {
-        return null;
-    }
-
     /**
      * 获取单例对象
      *
-     * @param t 获取对象的类
-     * @param <T>
-     * @return
+     * @param requiredType 获取对象的类
      */
     @Override
     public <T> T getBean(Class<T> requiredType) throws BeansException {
         Supplier<?> getter = instancesLazyFromGetter.get(requiredType);
-        return (T) (Objects.nonNull(getter) ? getter.get() : instances.get(requiredType));
-    }
-
-    @Override
-    public <T> T getBean(Class<T> requiredType, Object... args) throws BeansException {
-        return null;
+        return (T)(Objects.nonNull(getter) ? getter.get() : instances.get(requiredType));
     }
 
     /**
      * 通过构造函数注册Bean
      *
-     * @param t
      * @param <T> registerFromConstructor(Bean.class)
      */
     public <T> void registerFromConstructor(Class<T> t) throws BeanInstantiationException {
@@ -84,37 +66,29 @@ public abstract class AbstractBeanFactory implements BeanFactory {
     /**
      * 通过对象注册Bean
      *
-     * @param t
-     * @param instance
      * @param <T> registerFromConstructor(Bean.class, new Bean())
      */
     public <T> void registerFromInstance(Class<T> t, Object instance) {
-        instances.put(t, instance);
+        instances.put(t.getName(), instance);
     }
 
     /**
      * 通过Getter延迟拉取对象注册成Bean（Getter获取的对象可能是延迟构建的，所以需要延迟注册）
      *
-     * @param t
-     * @param getter
      * @param <T> registerFromConstructor(Bean.class, otherBean::getBean)
      */
     public <T> void registerFromGetter(Class<T> t, Supplier<T> getter) {
-        instancesLazyFromGetter.put(t, (Supplier<Object>) getter);
+        instancesLazyFromGetter.put(t.getName(), (Supplier<Object>)getter);
     }
 
     /**
      * 通过Getter延迟拉取对象注册成Bean（Getter获取的对象可能是延迟构建的，所以需要延迟注册）
      *
-     * @param t
-     * @param s
-     * @param getter
-     * @param <T>
      * @param <S> registerFromConstructor(Bean.class, OtherBean.class, otherBean ->
      *            otherBean::getBean)
      */
     public <T, S> void registerFromGetter(Class<T> t, Class<S> s, Function<S, T> getter) {
-        instancesLazyFromGetter.put(t, () -> getter.apply(getBean(s)));
+        instancesLazyFromGetter.put(t.getName(), () -> getter.apply(getBean(s)));
     }
 
     /**
@@ -135,14 +109,9 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     /**
      * 通过构造函数创建Bean
-     *
-     * @param t
-     * @param <T>
-     * @return
-     * @throws BeanInstantiationException
      */
     protected <T> T createBeanFromConstructor(Class<T> t) throws BeanInstantiationException {
-        Constructor<T>[] cons = (Constructor<T>[]) t.getConstructors();
+        Constructor<T>[] cons = (Constructor<T>[])t.getConstructors();
         // 可以构造对象的构造函数（优先使用@Injector的构造函数，没有则使用无参构造函数）
         Constructor<T> constructor = null;
         for (Constructor<T> c : cons) {
@@ -162,6 +131,12 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         } catch (Exception e) {
             throw new BeanInstantiationException(t, e.getMessage(), e);
         }
+    }
+
+    private String resolveBeanName(Class<?> clazz) {
+        char[] c = clazz.getSimpleName().toCharArray();
+        c[0] = Character.toLowerCase(c[0]);
+        return new String(c);
     }
 
 }
