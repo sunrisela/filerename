@@ -39,7 +39,15 @@ public class PreferenceFile {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        yaml.dump(preferenceDO, writer);
+        try {
+            yaml.dump(preferenceDO, writer);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public boolean exists() {

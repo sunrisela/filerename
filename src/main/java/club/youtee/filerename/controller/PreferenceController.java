@@ -57,8 +57,7 @@ public class PreferenceController {
     protected void onSaveButtonClick() {
         boolean changed = PreferenceContext.getEpRegs().hashCode() != epRegs.getItems().hashCode();
         if (changed) {
-            //System.out.println("ep patterns changed to commit.");
-            PreferenceContext.setEpPatterns(epRegs.getItems());
+            PreferenceContext.setEpRegs(epRegs.getItems(), true);
             PreferenceContext.commit();
         }
         epRegs.getScene().getWindow().hide();

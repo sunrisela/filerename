@@ -1,5 +1,6 @@
 package club.youtee.filerename.support;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -38,8 +39,12 @@ public class PreferenceContext {
         return INSTANCE.epRegs;
     }
 
-    public static void setEpPatterns(List<String> epRegs) {
-        INSTANCE.epRegs = epRegs;
+    public static void setEpRegs(List<String> epRegs) {
+        setEpRegs(epRegs, false);
+    }
+
+    public static void setEpRegs(List<String> epRegs, boolean clone) {
+        INSTANCE.epRegs = clone ? new ArrayList<>(epRegs) : epRegs;
         INSTANCE.epPatterns = epRegs.stream().map(Pattern::compile).toList();
     }
 
@@ -69,7 +74,7 @@ public class PreferenceContext {
         if (preferenceDO == null || preferenceDO.getEpRegs() == null) {
             return;
         }
-        setEpPatterns(preferenceDO.getEpRegs());
+        setEpRegs(preferenceDO.getEpRegs());
     }
 
     private PreferenceDO convert2Entity() {
