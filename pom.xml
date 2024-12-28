@@ -195,11 +195,15 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- javaFX build native application -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>1.0.23</version>
                 <configuration>
+                    <!-- hw is not available in virtualized environment, JavaFX defaults to sw rendering instead.
+                         So we need to enable sw rendering.-->
+                    <enableSWRendering>true</enableSWRendering>
                     <mainClass>club.youtee.filerename.MainApplication</mainClass>
                     <!-- 涉及反射的类 -->
                     <reflectionList>
