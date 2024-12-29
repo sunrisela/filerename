@@ -217,6 +217,7 @@
                         <list>com.sun.scenario.effect.impl.sw.java.JSWRendererDelegate</list>
                         <list>club.youtee.filerename.controller.MainController</list>
                         <list>club.youtee.filerename.controller.PreferenceController</list>
+                        <list>club.youtee.filerename.domain.entity.PreferenceDO</list>
                         <list>org.kordamp.bootstrapfx.BootstrapFX</list>
                         <list>javafx.scene.layout.VBox</list>
                         <list>javafx.scene.layout.GridPane</list>
