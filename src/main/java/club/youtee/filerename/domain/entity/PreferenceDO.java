@@ -3,7 +3,6 @@ package club.youtee.filerename.domain.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import lombok.Getter;
 import lombok.Setter;

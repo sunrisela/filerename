@@ -161,6 +161,7 @@
                 <configuration>
                     <mainClass>club.youtee.filerename/club.youtee.filerename.MainApplication</mainClass>
                     <options>
+                        <option>-agentlib:native-image-agent=config-merge-dir=src/main/resources/META-INF/native-image</option>
                         <!-- enable sw rendering to show reflect-config.json what reflection classes need to add manually -->
                         <option>-Dprism.order=sw</option>
                         <option>-Dprism.verbose=true</option>

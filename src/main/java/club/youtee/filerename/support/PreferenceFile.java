@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 import club.youtee.filerename.domain.entity.PreferenceDO;
@@ -35,7 +37,7 @@ public class PreferenceFile {
         File yamlFile = this.getFile();
         FileWriter writer;
         try {
-            writer = new FileWriter(yamlFile);
+            writer = new FileWriter(yamlFile, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
