@@ -150,7 +150,7 @@ public class SeriesRenameProcessor extends BasePreviewProcessor {
     private boolean doRename(EpisodeFile target, String newName) {
         boolean success = isPreview || target.rename(newName);
         if (success) {
-            info("重命名: " + target.getFile().getName() + " => " + newName + '.' + target.getExtname());
+            info("重命名: " + target.getFile().getName() + "\n => " + newName + '.' + target.getExtname());
         } else {
             error("重命名失败: " + target.getFile().getName());
         }

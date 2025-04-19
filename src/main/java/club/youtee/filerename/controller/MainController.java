@@ -212,9 +212,9 @@ public class MainController {
             .collect(Collectors.toSet());
         return RenameOptionDTO.builder()
             .refer(refer.getSelectedToggle().getUserData().toString())
-            .prefix(prefix.getText().isBlank() ? null : prefix.getText().trim())
-            .suffix(suffix.getText().isBlank() ? null : suffix.getText().trim())
-            .subSuffix(subSuffix.getText().isBlank() ? null : subSuffix.getText().trim())
+            .prefix(prefix.getText().isBlank() ? null : prefix.getText().stripLeading())
+            .suffix(suffix.getText().isBlank() ? null : suffix.getText().stripTrailing())
+            .subSuffix(subSuffix.getText().isBlank() ? null : subSuffix.getText().stripTrailing())
             .reserveType(Integer.parseInt(reserveType.getSelectedToggle().getUserData().toString()))
             .allowMissing(Boolean.parseBoolean(allowMissing.getSelectedToggle().getUserData().toString()))
             .videoEpReg(videoEpReg.getText().isBlank() ? null : videoEpReg.getText().trim())

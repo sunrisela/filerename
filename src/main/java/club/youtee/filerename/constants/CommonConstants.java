@@ -14,10 +14,10 @@ public interface CommonConstants {
      */
     Pattern[] DEFAULT_EP_PATTERNS = new Pattern[] {
         Pattern.compile("(?i)(.*\\[)(\\d+)(?:v\\d+)?(].*)"),
-        Pattern.compile("(?i)(.*\\s+)(\\d+)(?:v\\d+)?(\\s+.*|$)"),
+        Pattern.compile("(?i)(.*\\s+|^)(\\d+)(?:v\\d+)?(\\s+.*|$)"),
         Pattern.compile("(?i)(.*)S\\d+E(\\d+)(?:v\\d+)?(.*)"),
-        Pattern.compile("(?i)(.*)[E#](\\d+)(?:v\\d+)?((?:\\.|\\s+).*|$)"),
-        Pattern.compile("(.*)第\\s*(\\d+)\\s*(?=[話话集])(.*)"),
+        Pattern.compile("(?i)(.*)(?:[E#]|EP)(\\d+)(?:v\\d+)?((?:\\.|\\s+).*|$)"),
+        Pattern.compile("(.*)第\\s*(\\d+)\\s*[話话集](.*)"),
         Pattern.compile("(?i)(.*OVA_?)(\\d+)(.*)"),
     };
 
